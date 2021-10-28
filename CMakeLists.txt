@@ -6,23 +6,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_PREFIX_PATH "F:/Qt/6.1.3/mingw81_64")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-add_executable(Tarot src/main.cpp)
+set(SOURCES
+    src/main.cpp
+    src/mainwindow.cpp)
 
-target_link_libraries(Tarot PRIVATE Qt6::Widgets)
+set(HEADERS
+    src/mainwindow.h)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-  set_property(TARGET Tarot PROPERTY WIN32_EXECUTABLE true)
+  set_property(TARGET ${PROJECT_NAME} PROPERTY WIN32_EXECUTABLE true)
 endif()
 
 if (WIN32)
     find_program(WINDEPLOYQT_EXECUTABLE NAMES windeployqt HINTS ${CMAKE_PREFIX_PATH} bin)
-    add_custom_command(TARGET Tarot POST_BUILD
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${WINDEPLOYQT_EXECUTABLE} '${CMAKE_RUNTIME_OUTPUT_DIRECTORY}')
 endif()
