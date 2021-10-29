@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>background/table.png</file>
         <file>background/panel.jpg</file>
+
+        <file>cards/Card Back.png</file>
     </qresource>
 </RCC>

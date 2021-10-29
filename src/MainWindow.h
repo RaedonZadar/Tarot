@@ -1,6 +1,5 @@
 #include <QWidget>
 #include <QMainWindow>
-#include <QString>
 
 class MainWindow : public QMainWindow
 {
