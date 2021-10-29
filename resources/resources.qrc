@@ -1,8 +1,63 @@
 <RCC>
     <qresource prefix="/">
         <file>background/table.png</file>
-        <file>background/panel.jpg</file>
-
+		<file>background/panel.jpg</file>
+		
+		<file>cards/Icon.png</file>
         <file>cards/Card Back.png</file>
+        <file>cards/Coins - 01 Swashbuckler.png</file>
+        <file>cards/Coins - 02 Philanthropist.png</file>
+        <file>cards/Coins - 03 Trader.png</file>
+        <file>cards/Coins - 04 Merchant.png</file>
+        <file>cards/Coins - 05 Guild Master.png</file>
+        <file>cards/Coins - 06 Beggar.png</file>
+        <file>cards/Coins - 07 Thief.png</file>
+        <file>cards/Coins - 08 Tax Collector.png</file>
+        <file>cards/Coins - 09 Miser.png</file>
+        <file>cards/Coins, Master of - Rogue.png</file>
+        <file>cards/Crowns - Artifact.png</file>
+        <file>cards/Crowns - Beast.png</file>
+        <file>cards/Crowns - Broken One.png</file>
+        <file>cards/Crowns - Darklord.png</file>
+        <file>cards/Crowns - Donjon.png</file>
+        <file>cards/Crowns - Executioner.png</file>
+        <file>cards/Crowns - Ghost.png</file>
+        <file>cards/Crowns - Horseman.png</file>
+        <file>cards/Crowns - Innocent.png</file>
+        <file>cards/Crowns - Marionette.png</file>
+        <file>cards/Crowns - Mists.png</file>
+        <file>cards/Crowns - Raven.png</file>
+        <file>cards/Crowns - Seer.png</file>
+        <file>cards/Crowns - Tempter.png</file>
+        <file>cards/Glyphs - 01 Monk.png</file>
+        <file>cards/Glyphs - 02 Missionary.png</file>
+        <file>cards/Glyphs - 03 Healer.png</file>
+        <file>cards/Glyphs - 04 Shepherd.png</file>
+        <file>cards/Glyphs - 05 Druid.png</file>
+        <file>cards/Glyphs - 06 Anarchist.png</file>
+        <file>cards/Glyphs - 07 Charlatan.png</file>
+        <file>cards/Glyphs - 08 Bishop.png</file>
+        <file>cards/Glyphs - 09 Traitor.png</file>
+        <file>cards/Glyphs, Master of - Priest.png</file>
+        <file>cards/Stars - 01 Transmuter.png</file>
+        <file>cards/Stars - 02 Diviner.png</file>
+        <file>cards/Stars - 03 Enchanter.png</file>
+        <file>cards/Stars - 04 Abjurer.png</file>
+        <file>cards/Stars - 05 Elementalist.png</file>
+        <file>cards/Stars - 06 Evoker.png</file>
+        <file>cards/Stars - 07 Illusionist.png</file>
+        <file>cards/Stars - 08 Necromancer.png</file>
+        <file>cards/Stars - 09 Conjurer.png</file>
+        <file>cards/Stars, Master of - Wizard.png</file>
+        <file>cards/Swords - 01 Avenger.png</file>
+        <file>cards/Swords - 02 Paladin.png</file>
+        <file>cards/Swords - 03 Soldier.png</file>
+        <file>cards/Swords - 04 Mercenary.png</file>
+        <file>cards/Swords - 05 Myrmidon.png</file>
+        <file>cards/Swords - 06 Berserker.png</file>
+        <file>cards/Swords - 07 Hooded One.png</file>
+        <file>cards/Swords - 08 Dictator.png</file>
+        <file>cards/Swords - 09 Torturer.png</file>
+        <file>cards/Swords, Master of - Warrior.png</file>
     </qresource>
 </RCC>
