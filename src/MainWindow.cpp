@@ -1,3 +1,6 @@
+#include <QScrollArea>
+#include <QFrame>
+#include <QPixmap>
 #include <QPushButton>
 #include <QGridLayout>
 #include <MainWindow.h>
@@ -5,13 +8,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    CreateButton("Push me");
+    Initialise();
 }
 
-void MainWindow::CreateButton(QString text)
-{
+void MainWindow::Initialise()
+{    
     QWidget *widget = new QWidget;
-    widget->setStyleSheet("background-color: red");
 
     QGridLayout *grid = new QGridLayout;
     grid->setSpacing(0);
@@ -20,17 +22,14 @@ void MainWindow::CreateButton(QString text)
     grid->setColumnStretch(1, 1);
     widget->setLayout(grid);
 
-    QPushButton *button = new QPushButton;
-    button->setText(text);
-    button->setStyleSheet("background-color: blue");
-    button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    grid->addWidget(button, 0, 0);
+    QFrame *table = new QFrame;
+    table->setStyleSheet("border-image: url('://background/table.png')");
+    grid->addWidget(table, 0, 0);
 
-    QPushButton *button2 = new QPushButton;
-    button2->setText("No, push me!");
-    button2->setStyleSheet("background-color: green");
-    button2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    grid->addWidget(button2, 0, 1);
+    QFrame *panel = new QFrame;
+    panel->setStyleSheet("background-image: url('://background/panel.jpg');"
+                         "border: 5px solid black;");
+    grid->addWidget(panel, 0, 1);
 
     setCentralWidget(widget);
 }

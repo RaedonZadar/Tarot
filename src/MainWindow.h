@@ -10,5 +10,5 @@ class MainWindow : public QMainWindow
         MainWindow(QWidget *parent = nullptr);
 
     private:
-        void CreateButton(QString text);
+        void Initialise();
 };

@@ -19,7 +19,10 @@ set(SOURCES
 set(HEADERS
     src/mainwindow.h)
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+set(RESOURCES
+    resources/resources.qrc)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${RESOURCES})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
@@ -30,5 +33,5 @@ endif()
 if (WIN32)
     find_program(WINDEPLOYQT_EXECUTABLE NAMES windeployqt HINTS ${CMAKE_PREFIX_PATH} bin)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${WINDEPLOYQT_EXECUTABLE} '${CMAKE_RUNTIME_OUTPUT_DIRECTORY}')
+        COMMAND ${WINDEPLOYQT_EXECUTABLE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
