@@ -1,10 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>background/table.png</file>
-		<file>background/panel.jpg</file>
-		
-		<file>cards/Icon.png</file>
+        <file>background/panel.jpg</file>
+
+        <file>icon/Icon.png</file>
+
         <file>cards/Card Back.png</file>
+    </qresource>
+    <qresource prefix="/art">
         <file>cards/Coins - 01 Swashbuckler.png</file>
         <file>cards/Coins - 02 Philanthropist.png</file>
         <file>cards/Coins - 03 Trader.png</file>

@@ -16,9 +16,10 @@ SidePanel::SidePanel(QFrame *parent)
     // Create frame for the tarot configuration buttons
     QFrame *panel_btns_frame = new QFrame;
     QVBoxLayout *panel_btns_layout = new QVBoxLayout;
+    panel_btns_layout->setSpacing(10);
+    panel_btns_layout->setContentsMargins(40, 30, 40, 30);
     panel_btns_frame->setLayout(panel_btns_layout);
-    panel_btns_frame->setStyleSheet("QFrame {border: 2px solid red}");
-    panel_btns_frame->setContentsMargins(20, 0, 20, 0);
+    // panel_btns_frame->setStyleSheet("QFrame {border: 2px solid red}");
     panel_layout->addWidget(panel_btns_frame);
 
     // Create tarot configuration buttons
@@ -28,6 +29,8 @@ SidePanel::SidePanel(QFrame *parent)
     for (int i = 0; i < 4; ++i)
     {
         panel_btns[i]->setText(*panel_btns_text[i]);
+        panel_btns[i]->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        panel_btns[i]->setMaximumHeight(50);
         panel_btns_layout->addWidget(panel_btns[i], Qt::AlignCenter);
     }
 
@@ -40,6 +43,6 @@ SidePanel::SidePanel(QFrame *parent)
         panel_deck_label->setPixmap(pixmap);
     }
     panel_deck_label->setAlignment(Qt::AlignCenter);
-    panel_deck_label->setContentsMargins(10, 10, 10, 10);
+    panel_deck_label->setContentsMargins(20, 20, 20, 20);
     panel_layout->addWidget(panel_deck_label);
 }

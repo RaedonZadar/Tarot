@@ -15,11 +15,13 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
-    src/SidePanel.cpp)
+    src/SidePanel.cpp
+    src/CardTable.cpp)
 
 set(HEADERS
     src/Mainwindow.h
-    src/SidePanel.h)
+    src/SidePanel.h
+    src/CardTable.h)
 
 set(RESOURCES
     resources/resources.qrc)
