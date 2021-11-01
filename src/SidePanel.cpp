@@ -1,7 +1,7 @@
 #include <QVBoxLayout>
-#include <QPushbutton>
 #include <QLabel>
 #include <SidePanel.h>
+#include <CardTable.h>
 
 SidePanel::SidePanel(QFrame *parent)
     : QFrame(parent)
@@ -19,11 +19,9 @@ SidePanel::SidePanel(QFrame *parent)
     panel_btns_layout->setSpacing(10);
     panel_btns_layout->setContentsMargins(40, 30, 40, 30);
     panel_btns_frame->setLayout(panel_btns_layout);
-    // panel_btns_frame->setStyleSheet("QFrame {border: 2px solid red}");
     panel_layout->addWidget(panel_btns_frame);
 
     // Create tarot configuration buttons
-    QPushButton *panel_btns[4] = {new QPushButton, new QPushButton, new QPushButton, new QPushButton};
     QString *panel_btns_text[4] = {new QString("3 Card Spread"), new QString("5 Card Cross"),
                                     new QString("7 Card Crescent"), new QString("Celtic Cross")};
     for (int i = 0; i < 4; ++i)

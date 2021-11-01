@@ -16,12 +16,14 @@ set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
     src/SidePanel.cpp
-    src/CardTable.cpp)
+    src/CardTable.cpp
+    src/Card.cpp)
 
 set(HEADERS
     src/Mainwindow.h
     src/SidePanel.h
-    src/CardTable.h)
+    src/CardTable.h
+    src/Card.h)
 
 set(RESOURCES
     resources/resources.qrc)

@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QGridLayout>
 #include <MainWindow.h>
 #include <CardTable.h>
@@ -27,4 +28,12 @@ MainWindow::MainWindow(QWidget *parent)
     // Create side panel for the tarot configuration buttons and tarot deck
     SidePanel *panel = new SidePanel;
     grid->addWidget(panel, 0, 1);
+
+    // Connect SidePanel buttons to CardTable
+    for(int i = 0; i < 4; ++i)
+    {
+        QPushButton *btn = panel->panel_btns[i];
+        QString config = btn->text();
+        QObject::connect(btn, &QPushButton::released, [table, config](){table->applyConfig(config);});
+    }
 }
