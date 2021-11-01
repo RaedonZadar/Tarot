@@ -17,13 +17,13 @@ set(SOURCES
     src/MainWindow.cpp
     src/SidePanel.cpp
     src/CardTable.cpp
-    src/Card.cpp)
+    src/TarotDeck.cpp)
 
 set(HEADERS
     src/Mainwindow.h
     src/SidePanel.h
     src/CardTable.h
-    src/Card.h)
+    src/TarotDeck.h)
 
 set(RESOURCES
     resources/resources.qrc)

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     grid->addWidget(panel, 0, 1);
 
     // Connect SidePanel buttons to CardTable
-    for(int i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         QPushButton *btn = panel->panel_btns[i];
         QString config = btn->text();

@@ -1,5 +1,6 @@
 #include <QFrame>
 #include <QString>
+#include <TarotDeck.h>
 
 class CardTable : public QFrame
 {
@@ -10,8 +11,11 @@ class CardTable : public QFrame
         void applyConfig(QString config);
 
     private:
-        void ThreeCardSpread();
-        void FiveCardCross();
-        void SevenCardCrescent();
-        void CelticCross();
+        TarotDeck *deck = new TarotDeck;
+        QLayout *layout;
+        void threeCardSpread();
+        void fiveCardCross();
+        void sevenCardCrescent();
+        void celticCross();
+        void resetTable(QLayout *layout);
 };
