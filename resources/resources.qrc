@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>background/table.png</file>
-        <file>background/panel.jpg</file>
+        <file>background/panel.png</file>
 
         <file>icon/Icon.png</file>
 

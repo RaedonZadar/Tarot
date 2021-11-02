@@ -1,17 +1,18 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <SidePanel.h>
-#include <CardTable.h>
+#include <ScalingLabel.h>
 
 SidePanel::SidePanel(QFrame *parent)
     : QFrame(parent)
 {
     // Create frame for the tarot configuration buttons and tarot deck
     QVBoxLayout *panel_layout = new QVBoxLayout;
+    panel_layout->setContentsMargins(20, 20, 20, 20);
     this->setLayout(panel_layout);
     this->setObjectName("panel");
-    this->setStyleSheet("QFrame#panel {background-image: url('://background/panel.jpg');"
-                                        "border: 5px solid black}");
+    this->setStyleSheet("QFrame#panel {background-image: url('://background/panel.png');"
+                                      "border: 5px solid black}");
 
     // Create frame for the tarot configuration buttons
     QFrame *panel_btns_frame = new QFrame;
@@ -19,7 +20,7 @@ SidePanel::SidePanel(QFrame *parent)
     panel_btns_layout->setSpacing(10);
     panel_btns_layout->setContentsMargins(40, 30, 40, 30);
     panel_btns_frame->setLayout(panel_btns_layout);
-    panel_layout->addWidget(panel_btns_frame);
+    panel_layout->addWidget(panel_btns_frame, 2);
 
     // Create tarot configuration buttons
     QString *panel_btns_text[4] = {new QString("3 Card Spread"), new QString("5 Card Cross"),
@@ -33,14 +34,12 @@ SidePanel::SidePanel(QFrame *parent)
     }
 
     // Create tarot deck
-    QLabel *panel_deck_label = new QLabel;
+    ScalingLabel *panel_deck_label = new ScalingLabel;
     QPixmap pixmap;
     if (pixmap.load("://cards/Card Back.png"))
     {
-        pixmap = pixmap.scaled(300, 400, Qt::KeepAspectRatio);
         panel_deck_label->setPixmap(pixmap);
     }
     panel_deck_label->setAlignment(Qt::AlignCenter);
-    panel_deck_label->setContentsMargins(20, 20, 20, 20);
-    panel_layout->addWidget(panel_deck_label);
+    panel_layout->addWidget(panel_deck_label, 1);
 }

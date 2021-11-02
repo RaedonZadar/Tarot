@@ -1,12 +1,13 @@
-#include <QHBoxLayout>
+#include <QSpacerItem>
 #include <CardTable.h>
 
 CardTable::CardTable(QFrame *parent)
 {
     layout = new QHBoxLayout;
-    setLayout(layout);
-    setObjectName("CardTable");
-    setStyleSheet("QFrame#CardTable {border-image: url('://background/table.png')}");
+    layout->setContentsMargins(0, 0, 0, 0);
+    this->setLayout(layout);
+    this->setObjectName("CardTable");
+    this->setStyleSheet("QFrame#CardTable {border-image: url('://background/table.png')}");
 }
 
 void CardTable::applyConfig(QString config)
@@ -44,12 +45,15 @@ void CardTable::threeCardSpread()
 {
     resetTable(layout);
 
+    layout->setSpacing(20);
+    layout->addStretch(3);
     for (int i = 0; i < 3; ++i)
     {
-        QLabel *card = new QLabel;
+        ScalingLabel *card = new ScalingLabel;
         deck->createCard(card);
-        layout->addWidget(card);
+        layout->addWidget(card, 2);
     }
+    layout->addStretch(3);
 }
 
 void CardTable::fiveCardCross()

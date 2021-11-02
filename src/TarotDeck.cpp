@@ -7,7 +7,7 @@ TarotDeck::TarotDeck(QWidget *parent)
     cards_list = QDir("://art/cards/").entryList();
 }
 
-void TarotDeck::createCard(QLabel *card)
+void TarotDeck::createCard(ScalingLabel *card)
 {   
     QStringList cards_remaining = cardsRemaining(cards_list, cards_used);
 
@@ -19,15 +19,13 @@ void TarotDeck::createCard(QLabel *card)
 
         QString selected_card = cards_remaining[distrib(gen)];
         cards_used.append(selected_card);
-        
+
         QPixmap pixmap;
         if (pixmap.load("://art/cards/" + selected_card))
         {
-            pixmap = pixmap.scaled(240, 320);
             card->setPixmap(pixmap);
         }
         card->setAlignment(Qt::AlignCenter);
-        card->setContentsMargins(20, 20, 20, 20);
     }
 }
 
