@@ -1,3 +1,6 @@
+#ifndef CARDTABLE_H
+#define CARDTABLE_H
+
 #include <QFrame>
 #include <QString>
 #include <QLayout>
@@ -20,3 +23,4 @@ class CardTable : public QFrame
         void celticCross();
         void resetTable(QLayout *layout);
 };
+#endif

@@ -1,3 +1,6 @@
+#ifndef TAROTDECK_H
+#define TAROTDECK_H
+
 #include <QStringList>
 #include <ScalingLabel.h>
 
@@ -12,3 +15,4 @@ class TarotDeck : public QLabel
         QStringList cards_list;
         QStringList cards_used;
 };
+#endif

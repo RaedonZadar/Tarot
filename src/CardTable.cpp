@@ -59,6 +59,32 @@ void CardTable::threeCardSpread()
 void CardTable::fiveCardCross()
 {
     resetTable(layout);
+
+    QWidget *grid_widget = new QWidget;
+    layout->addWidget(grid_widget);
+    QGridLayout *grid = new QGridLayout;
+    grid_widget->setLayout(grid);
+    grid->setSpacing(20);
+
+    grid->setRowStretch(0, 1);
+    grid->setRowStretch(1, 2);
+    grid->setRowStretch(2, 2);
+    grid->setRowStretch(3, 2);
+    grid->setRowStretch(4, 1);
+    grid->setColumnStretch(0, 2);
+    grid->setColumnStretch(1, 1);
+    grid->setColumnStretch(2, 1);
+    grid->setColumnStretch(3, 1);
+    grid->setColumnStretch(4, 2);
+
+    int idx_row[5] = {2, 3, 2, 1, 2};
+    int idx_col[5] = {2, 2, 1, 2, 3};
+    for (int i = 0; i < 5; ++i)
+    {
+        ScalingLabel *card = new ScalingLabel;
+        deck->createCard(card);
+        grid->addWidget(card, idx_row[i], idx_col[i]);
+    }
 }
 
 void CardTable::sevenCardCrescent()

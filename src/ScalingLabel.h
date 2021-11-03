@@ -1,3 +1,6 @@
+#ifndef SCALINGLABEL_H
+#define SCALINGLABEL_H
+
 #include <QLabel>
 #include <QPixmap>
 
@@ -16,3 +19,4 @@ class ScalingLabel : public QLabel
     private:
         QPixmap pix;
 };
+#endif

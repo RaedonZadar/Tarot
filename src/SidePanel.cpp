@@ -1,7 +1,6 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <SidePanel.h>
-#include <ScalingLabel.h>
 
 SidePanel::SidePanel(QFrame *parent)
     : QFrame(parent)
@@ -34,12 +33,13 @@ SidePanel::SidePanel(QFrame *parent)
     }
 
     // Create tarot deck
-    ScalingLabel *panel_deck_label = new ScalingLabel;
+    card_deck = new ScalingLabel;
     QPixmap pixmap;
     if (pixmap.load("://cards/Card Back.png"))
     {
-        panel_deck_label->setPixmap(pixmap);
+        card_deck->setObjectName("CardDeck");
+        card_deck->setPixmap(pixmap);
     }
-    panel_deck_label->setAlignment(Qt::AlignCenter);
-    panel_layout->addWidget(panel_deck_label, 1);
+    card_deck->setAlignment(Qt::AlignCenter);
+    panel_layout->addWidget(card_deck, 1);
 }
