@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         QPushButton *btn = panel->panel_btns[i];
         QString config = btn->text();
-        QObject::connect(btn, &QPushButton::released, [table, config](){table->applyConfig(config);});
+        ScalingLabel *card_deck = panel->card_deck;
+        QObject::connect(btn, &QPushButton::released, [table, config, card_deck](){table->applyConfig(config, card_deck);});
     }
 }

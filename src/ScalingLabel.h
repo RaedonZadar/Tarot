@@ -10,10 +10,11 @@ class ScalingLabel : public QLabel
 
     public:
         ScalingLabel(QWidget *parent = nullptr);
-        QPixmap scaledPixmap() const;
+        QPixmap scaledPixmap(ScalingLabel * = nullptr) const;
+        ScalingLabel *match_scaling = nullptr;
 
     public slots:
-        void setPixmap(const QPixmap &);
+        void setPixmap(const QPixmap &, ScalingLabel * = nullptr);
         void resizeEvent(QResizeEvent *);
 
     private:

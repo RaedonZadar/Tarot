@@ -10,7 +10,7 @@ CardTable::CardTable(QFrame *parent)
     this->setStyleSheet("QFrame#CardTable {border-image: url('://background/table.png')}");
 }
 
-void CardTable::applyConfig(QString config)
+void CardTable::applyConfig(QString config, ScalingLabel *card_deck)
 {
     /* Public slot used to apply tarot configurations to the CardTable based on   //
     // which configuration button was pressed. The configurations themselves are  //
@@ -21,16 +21,16 @@ void CardTable::applyConfig(QString config)
     switch (idx)
     {
         case 0:
-            threeCardSpread();
+            threeCardSpread(card_deck);
             break;
         case 1:
-            fiveCardCross();
+            fiveCardCross(card_deck);
             break;
         case 2:
-            sevenCardCrescent();
+            sevenCardCrescent(card_deck);
             break;
         case 3:
-            celticCross();
+            celticCross(card_deck);
             break;
         case 4:
             resetTable(layout);
@@ -41,7 +41,7 @@ void CardTable::applyConfig(QString config)
     }
 }
 
-void CardTable::threeCardSpread()
+void CardTable::threeCardSpread(ScalingLabel *card_deck)
 {
     resetTable(layout);
 
@@ -49,13 +49,13 @@ void CardTable::threeCardSpread()
     layout->addStretch(3);
     for (int i = 0; i < 3; ++i)
     {
-        ScalingLabel *card = deck->drawCard();
+        ScalingLabel *card = deck->drawCard(card_deck);
         layout->addWidget(card, 2);
     }
     layout->addStretch(3);
 }
 
-void CardTable::fiveCardCross()
+void CardTable::fiveCardCross(ScalingLabel *card_deck)
 {
     resetTable(layout);
 
@@ -63,34 +63,35 @@ void CardTable::fiveCardCross()
     layout->addWidget(grid_widget);
     QGridLayout *grid = new QGridLayout;
     grid_widget->setLayout(grid);
+    grid->setContentsMargins(0, 0, 0, 0);
     grid->setSpacing(20);
 
-    grid->setRowStretch(0, 1);
-    grid->setRowStretch(1, 2);
-    grid->setRowStretch(2, 2);
-    grid->setRowStretch(3, 2);
-    grid->setRowStretch(4, 1);
-    grid->setColumnStretch(0, 2);
-    grid->setColumnStretch(1, 1);
-    grid->setColumnStretch(2, 1);
-    grid->setColumnStretch(3, 1);
-    grid->setColumnStretch(4, 2);
+    // grid->setRowStretch(0, 1);
+    // grid->setRowStretch(1, 2);
+    // grid->setRowStretch(2, 2);
+    // grid->setRowStretch(3, 2);
+    // grid->setRowStretch(4, 1);
+    // grid->setColumnStretch(0, 2);
+    // grid->setColumnStretch(1, 1);
+    // grid->setColumnStretch(2, 1);
+    // grid->setColumnStretch(3, 1);
+    // grid->setColumnStretch(4, 2);
 
     int idx_row[5] = {2, 3, 2, 1, 2};
     int idx_col[5] = {2, 2, 1, 2, 3};
     for (int i = 0; i < 5; ++i)
     {
-        ScalingLabel *card = deck->drawCard();
+        ScalingLabel *card = deck->drawCard(card_deck);
         grid->addWidget(card, idx_row[i], idx_col[i]);
     }
 }
 
-void CardTable::sevenCardCrescent()
+void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
 {
     resetTable(layout);
 }
 
-void CardTable::celticCross()
+void CardTable::celticCross(ScalingLabel *card_deck)
 {
     resetTable(layout);
 }
