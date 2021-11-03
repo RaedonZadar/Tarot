@@ -3,7 +3,6 @@
 ScalingLabel::ScalingLabel(QWidget *parent)
     : QLabel(parent)
 {
-    // this->setContentsMargins(0, 0, 0, 0);
     this->setMinimumSize(1,1);
     this->setScaledContents(false);
 }

@@ -49,8 +49,7 @@ void CardTable::threeCardSpread()
     layout->addStretch(3);
     for (int i = 0; i < 3; ++i)
     {
-        ScalingLabel *card = new ScalingLabel;
-        deck->createCard(card);
+        ScalingLabel *card = deck->drawCard();
         layout->addWidget(card, 2);
     }
     layout->addStretch(3);
@@ -81,8 +80,7 @@ void CardTable::fiveCardCross()
     int idx_col[5] = {2, 2, 1, 2, 3};
     for (int i = 0; i < 5; ++i)
     {
-        ScalingLabel *card = new ScalingLabel;
-        deck->createCard(card);
+        ScalingLabel *card = deck->drawCard();
         grid->addWidget(card, idx_row[i], idx_col[i]);
     }
 }

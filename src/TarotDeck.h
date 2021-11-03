@@ -8,7 +8,7 @@ class TarotDeck : public QLabel
 {
     public:
         TarotDeck(QWidget *parent = nullptr);
-        void createCard(ScalingLabel *card);
+        ScalingLabel* drawCard();
         
     private:
         QStringList cardsRemaining(QStringList cards_list, QStringList cards_used);
