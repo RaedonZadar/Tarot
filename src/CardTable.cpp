@@ -4,7 +4,8 @@
 CardTable::CardTable(QFrame *parent)
 {
     layout = new QHBoxLayout;
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins(20, 20, 20, 20);
+    layout->setSpacing(20);
     this->setLayout(layout);
     this->setObjectName("CardTable");
     this->setStyleSheet("QFrame#CardTable {border-image: url('://background/table.png')}");
@@ -89,6 +90,43 @@ void CardTable::fiveCardCross(ScalingLabel *card_deck)
 void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
 {
     resetTable(layout);
+
+    QWidget *widget[5] = {new QWidget, new QWidget, new QWidget,
+                          new QWidget, new QWidget};
+    QVBoxLayout *v_layout[5] = {new QVBoxLayout, new QVBoxLayout, new QVBoxLayout,
+                                new QVBoxLayout, new QVBoxLayout};
+    
+    for (int i = 0; i < 5; ++i)
+    {
+        layout->addWidget(widget[i]);
+        widget[i]->setLayout(v_layout[i]);
+        v_layout[i]->setContentsMargins(0, 0, 0, 0);
+        v_layout[i]->setSpacing(20);
+
+        if (i != 2)
+        {
+            ScalingLabel *card = deck->drawCard(card_deck);
+            v_layout[i]->addWidget(card);
+        }
+        else if (i == 2)
+        {
+            QWidget *mid_widget = new QWidget;
+            QHBoxLayout *mid_layout = new QHBoxLayout;
+            ScalingLabel *card[2] = {deck->drawCard(card_deck),
+                                     deck->drawCard(card_deck)};
+            mid_widget->setLayout(mid_layout);
+            v_layout[i]->addWidget(mid_widget);
+            mid_layout->setContentsMargins(0, 0, 0, 0);
+            mid_layout->setSpacing(20);
+            mid_layout->addWidget(card[0]);
+            mid_layout->addWidget(card[1]);
+        }
+        if (i == 4)
+        {
+            ScalingLabel *card = deck->drawCard(card_deck);
+            v_layout[2]->insertWidget(0, card);
+        }
+    }
 }
 
 void CardTable::celticCross(ScalingLabel *card_deck)
