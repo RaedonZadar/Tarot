@@ -100,26 +100,42 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
     QWidget *mid_widget = new QWidget;
     QHBoxLayout *mid_layout = new QHBoxLayout;
     mid_widget->setLayout(mid_layout);
-    v_layout[2]->addWidget(mid_widget);
+    v_layout[2]->addWidget(mid_widget, 3);
     mid_layout->setContentsMargins(0, 0, 0, 0);
     mid_layout->setSpacing(20);
     
     for (int i = 0; i < 7; ++i) {seven_cards[i] = deck->drawCard(card_deck, getMaxCardSize());}
 
+    layout->addStretch(1);
     for (int i = 0; i < 5; ++i)
     {
-        layout->addWidget(widget[i]);
+        layout->addWidget(widget[i], 2);
         widget[i]->setLayout(v_layout[i]);
         v_layout[i]->setContentsMargins(0, 0, 0, 0);
         v_layout[i]->setSpacing(20);
     }
-    v_layout[0]->addWidget(seven_cards[0]);
-    v_layout[1]->addWidget(seven_cards[1]);
+    layout->addStretch(1);
+    layout->setStretch(3, 4);
+
+    v_layout[0]->addStretch(3);
+    v_layout[1]->addStretch(2);
+    v_layout[2]->insertStretch(0, 1);
+    v_layout[3]->addStretch(2);
+    v_layout[4]->addStretch(3);
+
+    v_layout[0]->addWidget(seven_cards[0], 3);
+    v_layout[1]->addWidget(seven_cards[1], 1);
     mid_layout->addWidget(seven_cards[2]);
     mid_layout->addWidget(seven_cards[3]);
-    v_layout[3]->addWidget(seven_cards[4]);
-    v_layout[4]->addWidget(seven_cards[5]);
-    v_layout[2]->insertWidget(0, seven_cards[6]);
+    v_layout[3]->addWidget(seven_cards[4], 1);
+    v_layout[4]->addWidget(seven_cards[5], 3);
+    v_layout[2]->insertWidget(1, seven_cards[6], 3);
+
+    v_layout[0]->addStretch(2);
+    v_layout[1]->addStretch(1);
+    v_layout[2]->addStretch(1);
+    v_layout[3]->addStretch(1);
+    v_layout[4]->addStretch(2);
 }
 
 void CardTable::celticCross(ScalingLabel *card_deck)
