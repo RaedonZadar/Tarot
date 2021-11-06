@@ -14,5 +14,8 @@ class SidePanel : public QFrame
 
     public slots:
         void resizeEvent(QResizeEvent *);
+
+    private:
+        QSize getMaxCardSize();
 };
 #endif

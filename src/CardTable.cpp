@@ -51,7 +51,7 @@ void CardTable::threeCardSpread(ScalingLabel *card_deck)
     layout->addStretch(3);
     for (int i = 0; i < 3; ++i)
     {
-        three_cards[i] = deck->drawCard(card_deck);
+        three_cards[i] = deck->drawCard(card_deck, getMaxCardSize());
         layout->addWidget(three_cards[i], 2);
     }
     layout->addStretch(3);
@@ -68,22 +68,22 @@ void CardTable::fiveCardCross(ScalingLabel *card_deck)
     grid->setContentsMargins(0, 0, 0, 0);
     grid->setSpacing(20);
 
-    // grid->setRowStretch(0, 1);
-    // grid->setRowStretch(1, 2);
-    // grid->setRowStretch(2, 2);
-    // grid->setRowStretch(3, 2);
-    // grid->setRowStretch(4, 1);
-    // grid->setColumnStretch(0, 2);
-    // grid->setColumnStretch(1, 1);
-    // grid->setColumnStretch(2, 1);
-    // grid->setColumnStretch(3, 1);
-    // grid->setColumnStretch(4, 2);
+    grid->setRowStretch(0, 1);
+    grid->setRowStretch(1, 2);
+    grid->setRowStretch(2, 2);
+    grid->setRowStretch(3, 2);
+    grid->setRowStretch(4, 1);
+    grid->setColumnStretch(0, 2);
+    grid->setColumnStretch(1, 1);
+    grid->setColumnStretch(2, 1);
+    grid->setColumnStretch(3, 1);
+    grid->setColumnStretch(4, 2);
 
     int idx_row[5] = {2, 3, 2, 1, 2};
     int idx_col[5] = {2, 2, 1, 2, 3};
     for (int i = 0; i < 5; ++i)
     {
-        five_cards[i] = deck->drawCard(card_deck);
+        five_cards[i] = deck->drawCard(card_deck, getMaxCardSize());
         grid->addWidget(five_cards[i], idx_row[i], idx_col[i]);
     }
 }
@@ -104,7 +104,7 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
     mid_layout->setContentsMargins(0, 0, 0, 0);
     mid_layout->setSpacing(20);
     
-    for (int i = 0; i < 7; ++i) {seven_cards[i] = deck->drawCard(card_deck);}
+    for (int i = 0; i < 7; ++i) {seven_cards[i] = deck->drawCard(card_deck, getMaxCardSize());}
 
     for (int i = 0; i < 5; ++i)
     {
@@ -112,12 +112,14 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
         widget[i]->setLayout(v_layout[i]);
         v_layout[i]->setContentsMargins(0, 0, 0, 0);
         v_layout[i]->setSpacing(20);
-
-        if (i != 2) {v_layout[i]->addWidget(seven_cards[i]);}
-        else if (i == 2) {mid_layout->addWidget(seven_cards[2]);
-                          mid_layout->addWidget(seven_cards[3]);}
-        if (i == 4) {v_layout[2]->insertWidget(0, seven_cards[6]);}
     }
+    v_layout[0]->addWidget(seven_cards[0]);
+    v_layout[1]->addWidget(seven_cards[1]);
+    mid_layout->addWidget(seven_cards[2]);
+    mid_layout->addWidget(seven_cards[3]);
+    v_layout[3]->addWidget(seven_cards[4]);
+    v_layout[4]->addWidget(seven_cards[5]);
+    v_layout[2]->insertWidget(0, seven_cards[6]);
 }
 
 void CardTable::celticCross(ScalingLabel *card_deck)
@@ -152,9 +154,7 @@ void CardTable::resetTable(QLayout *layout)
 
 void CardTable::resizeEvent(QResizeEvent *e)
 {
-    QSize size = this->size();
-    size.rwidth() = size.width() / 7;
-    size.rheight() = size.height() / 5;
+    QSize size = getMaxCardSize();
     
     for (int i = 0; i < 10; ++i)
     {
@@ -175,4 +175,12 @@ void CardTable::resizeEvent(QResizeEvent *e)
             if (!ten_cards[i]->pixmap().isNull()) {ten_cards[i]->max_size = size;}
         }
     }
+}
+
+QSize CardTable::getMaxCardSize()
+{
+    QSize size = this->size();
+    size.rwidth() = size.width() / 7.5;
+    size.rheight() = size.height() / 5;
+    return size;
 }

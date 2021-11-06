@@ -23,6 +23,7 @@ class CardTable : public QFrame
         void sevenCardCrescent(ScalingLabel *card_deck);
         void celticCross(ScalingLabel *card_deck);
         void resetTable(QLayout *layout);
+        QSize getMaxCardSize();
         ScalingLabel *three_cards[3] = {};
         ScalingLabel *five_cards[5] = {};
         ScalingLabel *seven_cards[7] = {};

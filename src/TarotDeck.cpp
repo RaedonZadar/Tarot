@@ -7,9 +7,10 @@ TarotDeck::TarotDeck(QWidget *parent)
     cards_list = QDir("://art/cards/").entryList();
 }
 
-ScalingLabel* TarotDeck::drawCard(ScalingLabel *card_deck)
+ScalingLabel* TarotDeck::drawCard(ScalingLabel *card_deck, QSize max_size)
 {   
     ScalingLabel *card = new ScalingLabel;
+    card->max_size = max_size;
     QStringList cards_remaining = cardsRemaining(cards_list, cards_used);
 
     if (cards_remaining.size() == 0) {return NULL;}
