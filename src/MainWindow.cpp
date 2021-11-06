@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {   
     // Create widget and set it as the central widget
     QWidget *widget = new QWidget;
-    setMinimumSize(1536, 864);
+    setMinimumSize(1250, 759);
     setWindowIcon(QIcon("://icon/Icon.png"));
     setCentralWidget(widget);
 

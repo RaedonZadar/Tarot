@@ -20,6 +20,12 @@ QPixmap ScalingLabel::scaledPixmap(ScalingLabel *match_scaling) const
     if (match_scaling != nullptr) {size = match_scaling->size();}
     else {size = this->size();}
     
+    if (!max_size.isEmpty())
+    {
+        if (size.width() > max_size.width()) {size.rwidth() = max_size.width();}
+        if (size.height() > max_size.height()) {size.rheight() = max_size.height();}
+    }
+    
     return pix.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 

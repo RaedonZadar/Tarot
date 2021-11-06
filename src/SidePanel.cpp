@@ -17,7 +17,7 @@ SidePanel::SidePanel(QFrame *parent)
     QFrame *panel_btns_frame = new QFrame;
     QVBoxLayout *panel_btns_layout = new QVBoxLayout;
     panel_btns_layout->setSpacing(10);
-    panel_btns_layout->setContentsMargins(40, 30, 40, 30);
+    panel_btns_layout->setContentsMargins(30, 30, 30, 30);
     panel_btns_frame->setLayout(panel_btns_layout);
     panel_layout->addWidget(panel_btns_frame, 2);
 
@@ -42,4 +42,15 @@ SidePanel::SidePanel(QFrame *parent)
     }
     card_deck->setAlignment(Qt::AlignCenter);
     panel_layout->addWidget(card_deck, 1);
+}
+
+void SidePanel::resizeEvent(QResizeEvent *e)
+{
+    if (!card_deck->pixmap().isNull())
+    {
+        QSize size = this->size();
+        size.rwidth() = (size.width() * 4) / 7;
+        size.rheight() = size.height() / 5;
+        card_deck->max_size = size;
+    }
 }

@@ -12,6 +12,7 @@ class ScalingLabel : public QLabel
         ScalingLabel(QWidget *parent = nullptr);
         QPixmap scaledPixmap(ScalingLabel * = nullptr) const;
         ScalingLabel *match_scaling = nullptr;
+        QSize max_size;
 
     public slots:
         void setPixmap(const QPixmap &, ScalingLabel * = nullptr);

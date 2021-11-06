@@ -13,6 +13,7 @@ class CardTable : public QFrame
 
     public slots:
         void applyConfig(QString config, ScalingLabel *card_deck);
+        void resizeEvent(QResizeEvent *);
 
     private:
         TarotDeck *deck = new TarotDeck;
@@ -22,5 +23,9 @@ class CardTable : public QFrame
         void sevenCardCrescent(ScalingLabel *card_deck);
         void celticCross(ScalingLabel *card_deck);
         void resetTable(QLayout *layout);
+        ScalingLabel *three_cards[3] = {};
+        ScalingLabel *five_cards[5] = {};
+        ScalingLabel *seven_cards[7] = {};
+        ScalingLabel *ten_cards[10] = {};
 };
 #endif
