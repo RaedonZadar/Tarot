@@ -10,7 +10,8 @@ class ScalingLabel : public QLabel
 
     public:
         ScalingLabel(QWidget *parent = nullptr);
-        QPixmap scaledPixmap(ScalingLabel * = nullptr) const;
+        QPixmap scaledPixmap() const;
+        void rotatePixmap(int rotation);
         ScalingLabel *match_scaling = nullptr;
         QSize max_size;
 
@@ -20,5 +21,6 @@ class ScalingLabel : public QLabel
 
     private:
         QPixmap pix;
+        QPixmap pix_rotated;
 };
 #endif
