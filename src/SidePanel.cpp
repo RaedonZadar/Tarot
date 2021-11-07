@@ -34,7 +34,6 @@ SidePanel::SidePanel(QFrame *parent)
 
     // Create tarot deck
     card_deck = new ScalingLabel;
-    card_deck->max_size = getMaxCardSize();
     QPixmap pixmap;
     if (pixmap.load("://cards/Card Back.png"))
     {
@@ -43,21 +42,4 @@ SidePanel::SidePanel(QFrame *parent)
     }
     card_deck->setAlignment(Qt::AlignCenter);
     panel_layout->addWidget(card_deck, 1);
-}
-
-void SidePanel::resizeEvent(QResizeEvent *e)
-{
-    if (!card_deck->pixmap().isNull())
-    {
-        QSize size = getMaxCardSize();
-        card_deck->max_size = size;
-    }
-}
-
-QSize SidePanel::getMaxCardSize()
-{
-    QSize size = this->size();
-    size.rwidth() = size.width() * (4. / 7.5);
-    size.rheight() = size.height() / 5;
-    return size;
 }

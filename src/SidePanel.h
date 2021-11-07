@@ -11,11 +11,5 @@ class SidePanel : public QFrame
         SidePanel(QFrame *parent = nullptr);
         QPushButton *panel_btns[4] = {new QPushButton, new QPushButton, new QPushButton, new QPushButton};
         ScalingLabel *card_deck;
-
-    public slots:
-        void resizeEvent(QResizeEvent *);
-
-    private:
-        QSize getMaxCardSize();
 };
 #endif
