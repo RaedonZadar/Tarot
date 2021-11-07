@@ -63,9 +63,9 @@ void CardTable::fiveCardCross(ScalingLabel *card_deck)
 
     QWidget *grid_widget = new QWidget;
     QGridLayout *grid = new QGridLayout;
-    layout->addStretch(2);
-    layout->addWidget(grid_widget, 3);
-    layout->addStretch(2);
+    layout->addStretch(3);
+    layout->addWidget(grid_widget, 5);
+    layout->addStretch(3);
     grid_widget->setLayout(grid);
     grid->setContentsMargins(0, 0, 0, 0);
     grid->setSpacing(20);
@@ -106,13 +106,13 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
     layout->addStretch(1);
     for (int i = 0; i < 5; ++i)
     {
-        layout->addWidget(widget[i], 2);
+        layout->addWidget(widget[i], 3);
         widget[i]->setLayout(v_layout[i]);
         v_layout[i]->setContentsMargins(0, 0, 0, 0);
         v_layout[i]->setSpacing(20);
     }
     layout->addStretch(1);
-    layout->setStretch(3, 4);
+    layout->setStretch(3, 7);
 
     v_layout[0]->addStretch(3);
     v_layout[1]->addStretch(2);
@@ -142,31 +142,23 @@ void CardTable::celticCross(ScalingLabel *card_deck)
     QWidget *widget[2] = {new QWidget, new QWidget};
     QGridLayout *grid = new QGridLayout;
     QVBoxLayout *v_layout = new QVBoxLayout;
-    layout->addStretch(1);
-    layout->addWidget(widget[0], 4);
-    layout->addWidget(widget[1], 2);
-    layout->addStretch(1);
+    layout->addStretch(2);
+    layout->addWidget(widget[0], 7);
+    layout->addWidget(widget[1], 3);
+    layout->addStretch(2);
     widget[0]->setLayout(grid);
     widget[1]->setLayout(v_layout);
-    grid->setContentsMargins(0, 0, 0, 0);
+    grid->setContentsMargins(0, 50, 0, 50);
     grid->setSpacing(20);
-    v_layout->setContentsMargins(0, 0, 0, 0);
+    v_layout->setContentsMargins(0, 50, 0, 50);
     v_layout->setSpacing(5);
 
     for (int i = 0; i < 10; ++i) {ten_cards[i] = deck->drawCard(card_deck, getMaxCardSize());}
-    ten_cards[1]->rotatePixmap(90);
-    ten_cards[3]->setStyleSheet("border: 2px solid red");
-
-    QFrame *frame = new QFrame;
-    grid->addWidget(frame, 1, 1);
-    frame->setStyleSheet("background-color: red");
-    ten_cards[0]->setParent(frame);
-    ten_cards[1]->setParent(frame);
-    int width = ten_cards[0]->pixmap().width();
-    int height = ten_cards[0]->pixmap().height();
-    ten_cards[0]->move(0.17*width, 0);
-    ten_cards[1]->move(0, height - 0.17*width);
     
+    ten_cards[1]->rotatePixmap(90);
+    grid->addWidget(ten_cards[0], 1, 1);
+    grid->addWidget(ten_cards[1], 1, 1, Qt::AlignBottom);
+
     int idx_row[4] = {2, 1, 0, 1};
     int idx_col[4] = {1, 0, 1, 2};
     for (int i = 2; i < 6; ++i) {grid->addWidget(ten_cards[i], idx_row[i-2], idx_col[i-2]);}
