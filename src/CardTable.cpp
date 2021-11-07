@@ -11,7 +11,7 @@ CardTable::CardTable(QFrame *parent)
     this->setStyleSheet("QFrame#CardTable {border-image: url('://background/table.png')}");
 }
 
-void CardTable::applyConfig(QString config, ScalingLabel *card_deck)
+void CardTable::applyConfig(QString config)
 {
     /* Public slot used to apply tarot configurations to the CardTable based on  //
     // which configuration button was pressed. The configurations themselves are //
@@ -23,16 +23,16 @@ void CardTable::applyConfig(QString config, ScalingLabel *card_deck)
     switch (idx)
     {
         case 0:
-            threeCardSpread(card_deck);
+            threeCardSpread();
             break;
         case 1:
-            fiveCardCross(card_deck);
+            fiveCardCross();
             break;
         case 2:
-            sevenCardCrescent(card_deck);
+            sevenCardCrescent();
             break;
         case 3:
-            celticCross(card_deck);
+            celticCross();
             break;
         case 4:
             resetTable(layout);
@@ -43,7 +43,7 @@ void CardTable::applyConfig(QString config, ScalingLabel *card_deck)
     }
 }
 
-void CardTable::threeCardSpread(ScalingLabel *card_deck)
+void CardTable::threeCardSpread()
 {
     resetTable(layout);
 
@@ -51,13 +51,13 @@ void CardTable::threeCardSpread(ScalingLabel *card_deck)
     layout->addStretch(3);
     for (int i = 0; i < 3; ++i)
     {
-        three_cards[i] = deck->drawCard(card_deck, getMaxCardSize());
+        three_cards[i] = deck->drawCard(getMaxCardSize());
         layout->addWidget(three_cards[i], 2);
     }
     layout->addStretch(3);
 }
 
-void CardTable::fiveCardCross(ScalingLabel *card_deck)
+void CardTable::fiveCardCross()
 {
     resetTable(layout);
 
@@ -80,12 +80,12 @@ void CardTable::fiveCardCross(ScalingLabel *card_deck)
     int idx_col[5] = {2, 2, 1, 2, 3};
     for (int i = 0; i < 5; ++i)
     {
-        five_cards[i] = deck->drawCard(card_deck, getMaxCardSize());
+        five_cards[i] = deck->drawCard(getMaxCardSize());
         grid->addWidget(five_cards[i], idx_row[i], idx_col[i]);
     }
 }
 
-void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
+void CardTable::sevenCardCrescent()
 {
     resetTable(layout);
 
@@ -101,7 +101,7 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
     mid_layout->setContentsMargins(0, 0, 0, 0);
     mid_layout->setSpacing(20);
     
-    for (int i = 0; i < 7; ++i) {seven_cards[i] = deck->drawCard(card_deck, getMaxCardSize());}
+    for (int i = 0; i < 7; ++i) {seven_cards[i] = deck->drawCard(getMaxCardSize());}
 
     layout->addStretch(1);
     for (int i = 0; i < 5; ++i)
@@ -135,7 +135,7 @@ void CardTable::sevenCardCrescent(ScalingLabel *card_deck)
     v_layout[4]->addStretch(2);
 }
 
-void CardTable::celticCross(ScalingLabel *card_deck)
+void CardTable::celticCross()
 {
     resetTable(layout);
 
@@ -153,7 +153,7 @@ void CardTable::celticCross(ScalingLabel *card_deck)
     v_layout->setContentsMargins(0, 50, 0, 50);
     v_layout->setSpacing(5);
 
-    for (int i = 0; i < 10; ++i) {ten_cards[i] = deck->drawCard(card_deck, getMaxCardSize());}
+    for (int i = 0; i < 10; ++i) {ten_cards[i] = deck->drawCard(getMaxCardSize());}
     
     ten_cards[1]->rotatePixmap(90);
     grid->addWidget(ten_cards[0], 1, 1);

@@ -8,23 +8,20 @@ ScalingLabel::ScalingLabel(QWidget *parent)
     this->setScaledContents(false);
 }
 
-void ScalingLabel::setPixmap(const QPixmap &p, ScalingLabel *match)
+void ScalingLabel::setPixmap(const QPixmap &p)
 {
     pix = p;
-    match_scaling = match;
     QLabel::setPixmap(scaledPixmap());
 }
 
 QPixmap ScalingLabel::scaledPixmap() const
 {
-    QSize size;
-    if (match_scaling != nullptr) {size = match_scaling->size();}
-    else {size = this->size();}
+    QSize size = this->size();
     
     if (!max_size.isEmpty())
     {
-        if (size.width() > max_size.width()) {size.rwidth() = max_size.width();}
-        if (size.height() > max_size.height()) {size.rheight() = max_size.height();}
+        size.rwidth() = max_size.width();
+        size.rheight() = max_size.height();
     }
     
     if (!pix_rotated.isNull())

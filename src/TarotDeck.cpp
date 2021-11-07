@@ -7,7 +7,7 @@ TarotDeck::TarotDeck(QWidget *parent)
     cards_list = QDir("://art/cards/").entryList();
 }
 
-ScalingLabel* TarotDeck::drawCard(ScalingLabel *card_deck, QSize max_size)
+ScalingLabel* TarotDeck::drawCard(QSize max_size)
 {   
     ScalingLabel *card = new ScalingLabel;
     card->max_size = max_size;
@@ -24,7 +24,7 @@ ScalingLabel* TarotDeck::drawCard(ScalingLabel *card_deck, QSize max_size)
     QPixmap pixmap;
     if (pixmap.load("://art/cards/" + selected_card))
     {
-        card->setPixmap(pixmap, card_deck);
+        card->setPixmap(pixmap);
     }
     card->setAlignment(Qt::AlignCenter);
 

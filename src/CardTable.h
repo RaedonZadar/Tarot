@@ -12,16 +12,16 @@ class CardTable : public QFrame
         CardTable(QFrame *parent = nullptr);
 
     public slots:
-        void applyConfig(QString config, ScalingLabel *card_deck);
+        void applyConfig(QString config);
         void resizeEvent(QResizeEvent *);
 
     private:
         TarotDeck *deck = new TarotDeck;
         QBoxLayout *layout;
-        void threeCardSpread(ScalingLabel *card_deck);
-        void fiveCardCross(ScalingLabel *card_deck);
-        void sevenCardCrescent(ScalingLabel *card_deck);
-        void celticCross(ScalingLabel *card_deck);
+        void threeCardSpread();
+        void fiveCardCross();
+        void sevenCardCrescent();
+        void celticCross();
         void resetTable(QLayout *layout);
         QSize getMaxCardSize();
         ScalingLabel *three_cards[3] = {};
