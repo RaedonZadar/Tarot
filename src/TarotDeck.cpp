@@ -25,6 +25,7 @@ ScalingLabel* TarotDeck::drawCard(QSize max_size)
     if (pixmap.load("://art/cards/" + selected_card))
     {
         card->setPixmap(pixmap);
+        QObject::connect(card, &ScalingLabel::released, card, &ScalingLabel::onRelease);
     }
     card->setAlignment(Qt::AlignCenter);
 

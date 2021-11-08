@@ -24,14 +24,20 @@ QPixmap ScalingLabel::scaledPixmap() const
         size.rheight() = max_size.height();
     }
     
-    if (face_down && !pix_rotated.isNull())
-        {return card_back.scaled(size.transposed(), Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-    else if (!pix_rotated.isNull())
-        {return pix_rotated.scaled(size.transposed(), Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-    else if (face_down)
-        {return card_back.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+    if (!pix_rotated.isNull())
+    {
+        if (face_down)
+            {return card_back_rotated.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+        else 
+            {return pix_rotated.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+    }
     else
-        {return pix.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+    {
+        if (face_down)
+            {return card_back.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+        else
+            {return pix.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
+    }
 }
 
 void ScalingLabel::resizeEvent(QResizeEvent *e)
@@ -42,20 +48,29 @@ void ScalingLabel::resizeEvent(QResizeEvent *e)
     }
 }
 
-void ScalingLabel::rotatePixmap(int rotation)
+void ScalingLabel::rotatePixmap(int r)
 {
-    if (rotation == 0) {pix_rotated = QPixmap();}
-    else {pix_rotated = pix.transformed(QTransform().rotate(rotation));}
+    rotation = r;
+    if (r)
+    {
+        pix_rotated = pix.transformed(QTransform().rotate(rotation));
+        card_back_rotated = card_back.transformed(QTransform().rotate(rotation));
+    }
+    else
+    {
+        pix_rotated = QPixmap();
+        card_back_rotated = QPixmap();
+    }
     QLabel::setPixmap(scaledPixmap());
 }
 
-void ScalingLabel::onClick()
+void ScalingLabel::onRelease()
 {
     face_down ? face_down = false : face_down = true;
     QLabel::setPixmap(scaledPixmap());
 }
 
-void ScalingLabel::mousePressEvent(QMouseEvent *e)
+void ScalingLabel::mouseReleaseEvent(QMouseEvent *e)
 {
-    onClick();
+    emit released();
 }

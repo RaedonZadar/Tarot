@@ -11,21 +11,26 @@ class ScalingLabel : public QLabel
     public:
         ScalingLabel(QWidget *parent = nullptr);
         QPixmap scaledPixmap() const;
-        void rotatePixmap(int rotation);
+        void rotatePixmap(int r);
         QSize max_size;
 
     public slots:
         void setPixmap(const QPixmap & = QPixmap());
         void resizeEvent(QResizeEvent *);
-        void onClick();
+        void onRelease();
+
+    signals:
+        void released();
 
     private:
         QPixmap pix;
         QPixmap pix_rotated;
         QPixmap card_back = QPixmap("://cards/Card Back.png");
+        QPixmap card_back_rotated;
+        int rotation;
         bool face_down = true;
 
     protected:
-        void mousePressEvent(QMouseEvent *e);
+        void mouseReleaseEvent(QMouseEvent *e);
 };
 #endif
