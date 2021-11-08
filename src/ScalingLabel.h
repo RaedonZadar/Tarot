@@ -15,11 +15,17 @@ class ScalingLabel : public QLabel
         QSize max_size;
 
     public slots:
-        void setPixmap(const QPixmap &);
+        void setPixmap(const QPixmap & = QPixmap());
         void resizeEvent(QResizeEvent *);
+        void onClick();
 
     private:
         QPixmap pix;
         QPixmap pix_rotated;
+        QPixmap card_back = QPixmap("://cards/Card Back.png");
+        bool face_down = true;
+
+    protected:
+        void mousePressEvent(QMouseEvent *e);
 };
 #endif

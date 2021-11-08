@@ -34,12 +34,7 @@ SidePanel::SidePanel(QFrame *parent)
 
     // Create tarot deck
     card_deck = new ScalingLabel;
-    QPixmap pixmap;
-    if (pixmap.load("://cards/Card Back.png"))
-    {
-        card_deck->setObjectName("CardDeck");
-        card_deck->setPixmap(pixmap);
-    }
+    card_deck->setPixmap();
     card_deck->setAlignment(Qt::AlignCenter);
     panel_layout->addWidget(card_deck, 1);
 }
