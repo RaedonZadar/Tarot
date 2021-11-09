@@ -9,7 +9,8 @@ class TarotDeck : public QLabel
     public:
         TarotDeck(QWidget *parent = nullptr);
         ScalingLabel* drawCard(QSize max_size);
-        
+        void reshuffle();
+
     private:
         QStringList cardsRemaining(QStringList cards_list, QStringList cards_used);
         QStringList cards_list;

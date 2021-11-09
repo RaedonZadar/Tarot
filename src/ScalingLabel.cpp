@@ -50,18 +50,21 @@ void ScalingLabel::resizeEvent(QResizeEvent *e)
 
 void ScalingLabel::rotatePixmap(int r)
 {
-    rotation = r;
-    if (r)
+    if (!pix.isNull())
     {
-        pix_rotated = pix.transformed(QTransform().rotate(rotation));
-        card_back_rotated = card_back.transformed(QTransform().rotate(rotation));
+        rotation = r;
+        if (r)
+        {
+            pix_rotated = pix.transformed(QTransform().rotate(rotation));
+            card_back_rotated = card_back.transformed(QTransform().rotate(rotation));
+        }
+        else
+        {
+            pix_rotated = QPixmap();
+            card_back_rotated = QPixmap();
+        }
+        QLabel::setPixmap(scaledPixmap());
     }
-    else
-    {
-        pix_rotated = QPixmap();
-        card_back_rotated = QPixmap();
-    }
-    QLabel::setPixmap(scaledPixmap());
 }
 
 void ScalingLabel::onRelease()

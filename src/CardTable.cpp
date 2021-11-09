@@ -17,6 +17,7 @@ void CardTable::applyConfig(QString config)
     // which configuration button was pressed. The configurations themselves are //
     // defined within their own method functions.                                */
 
+    deck->reshuffle();
     QStringList configs = {"3 Card Spread", "5 Card Cross", 
                            "7 Card Crescent", "Celtic Cross"};
     int idx = configs.indexOf(config);

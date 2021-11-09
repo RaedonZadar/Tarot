@@ -13,7 +13,6 @@ ScalingLabel* TarotDeck::drawCard(QSize max_size)
     card->max_size = max_size;
     QStringList cards_remaining = cardsRemaining(cards_list, cards_used);
 
-    if (cards_remaining.size() == 0) {return NULL;}
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distrib(0, cards_remaining.count() - 1);
@@ -40,4 +39,9 @@ QStringList TarotDeck::cardsRemaining(QStringList cards_list, QStringList cards_
         cards_list.removeAll(iter.next());
     }
     return cards_list;
+}
+
+void TarotDeck::reshuffle()
+{
+    cards_used.clear();
 }
