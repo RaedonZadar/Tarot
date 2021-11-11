@@ -20,15 +20,15 @@ class ScalingLabel : public QLabel
         void onRelease();
 
     signals:
-        void released();
+        void releasedLMB();
 
     private:
-        QPixmap pix;
-        QPixmap pix_rotated;
-        QPixmap card_back = QPixmap("://cards/Card Back.png");
+        QPixmap card_front;
+        QPixmap card_front_rotated;
+        QPixmap card_back;
         QPixmap card_back_rotated;
         double rotation;
-        bool face_down = true;
+        bool is_face_down;
 
     protected:
         void mouseReleaseEvent(QMouseEvent *e);

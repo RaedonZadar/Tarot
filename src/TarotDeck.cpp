@@ -27,7 +27,7 @@ ScalingLabel* TarotDeck::drawCard(QSize max_size)
     {
         card->setPixmap(pixmap);
         card->rotatePixmap(rotation(gen)); //adds minor rotation for card to appear naturally placed
-        QObject::connect(card, &ScalingLabel::released, card, &ScalingLabel::onRelease);
+        QObject::connect(card, &ScalingLabel::releasedLMB, card, &ScalingLabel::onRelease);
     }
     card->setAlignment(Qt::AlignCenter);
 
@@ -50,6 +50,6 @@ void TarotDeck::reshuffle()
 {
     /* Clearing cards_used allows cardsRemaining to return the full deck of cards to draw from. //
     // Since cards are selected randomly, this is effectively a reshuffle.                      */
-    
+
     cards_used.clear();
 }

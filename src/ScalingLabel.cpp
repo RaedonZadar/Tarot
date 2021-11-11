@@ -1,4 +1,5 @@
 #include <math.h>
+#include <QMouseEvent>
 #include <ScalingLabel.h>
 
 ScalingLabel::ScalingLabel(QWidget *parent)
@@ -7,11 +8,14 @@ ScalingLabel::ScalingLabel(QWidget *parent)
     this->setContentsMargins(0, 0, 0, 0);
     this->setMinimumSize(1,1);
     this->setScaledContents(false);
+
+    card_back = QPixmap("://cards/Card Back.png");
+    is_face_down = true;
 }
 
 void ScalingLabel::setPixmap(const QPixmap &p)
 {
-    p.isNull() ? pix = card_back : pix = p;
+    p.isNull() ? card_front = card_back : card_front = p;
     QLabel::setPixmap(scaledPixmap());
 }
 
@@ -25,25 +29,18 @@ QPixmap ScalingLabel::scaledPixmap() const
         size.rheight() = max_size.height();
     }
     
-    if (!pix_rotated.isNull())
-    {
-        if (face_down)
-            {return card_back_rotated.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-        else 
-            {return pix_rotated.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-    }
+    QPixmap card;
+    if (!card_front_rotated.isNull())
+        {is_face_down ? card = card_back_rotated : card = card_front_rotated;}
     else
-    {
-        if (face_down)
-            {return card_back.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-        else
-            {return pix.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);}
-    }
+        {is_face_down ? card = card_back : card = card_front;}
+
+    return card.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
 void ScalingLabel::resizeEvent(QResizeEvent *e)
 {
-    if (!pix.isNull())
+    if (!card_front.isNull())
     {
         QLabel::setPixmap(scaledPixmap());
     }
@@ -51,7 +48,7 @@ void ScalingLabel::resizeEvent(QResizeEvent *e)
 
 void ScalingLabel::rotatePixmap(int r)
 {
-    if (!pix.isNull())
+    if (!card_front.isNull())
     {
         rotation = qDegreesToRadians(r);
         double sinr = sin(rotation);
@@ -59,12 +56,12 @@ void ScalingLabel::rotatePixmap(int r)
         if (r)
         {
             QTransform rotate(cosr, sinr, -sinr, cosr, 0, 0);
-            pix_rotated = pix.transformed(QTransform(rotate));
+            card_front_rotated = card_front.transformed(QTransform(rotate));
             card_back_rotated = card_back.transformed(QTransform(rotate));
         }
         else
         {
-            pix_rotated = QPixmap();
+            card_front_rotated = QPixmap();
             card_back_rotated = QPixmap();
         }
         QLabel::setPixmap(scaledPixmap());
@@ -73,11 +70,12 @@ void ScalingLabel::rotatePixmap(int r)
 
 void ScalingLabel::onRelease()
 {
-    face_down ? face_down = false : face_down = true;
+    is_face_down ? is_face_down = false : is_face_down = true;
     QLabel::setPixmap(scaledPixmap());
 }
 
 void ScalingLabel::mouseReleaseEvent(QMouseEvent *e)
 {
-    emit released();
+    if (e->button() == Qt::LeftButton)
+        {emit releasedLMB();}
 }
