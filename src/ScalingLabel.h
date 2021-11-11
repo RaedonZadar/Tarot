@@ -27,7 +27,7 @@ class ScalingLabel : public QLabel
         QPixmap pix_rotated;
         QPixmap card_back = QPixmap("://cards/Card Back.png");
         QPixmap card_back_rotated;
-        int rotation;
+        double rotation;
         bool face_down = true;
 
     protected:
