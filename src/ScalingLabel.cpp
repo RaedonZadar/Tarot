@@ -1,3 +1,4 @@
+#include <math.h>
 #include <ScalingLabel.h>
 
 ScalingLabel::ScalingLabel(QWidget *parent)
@@ -52,11 +53,14 @@ void ScalingLabel::rotatePixmap(int r)
 {
     if (!pix.isNull())
     {
-        rotation = r;
+        rotation = qDegreesToRadians(r);
+        double sinr = sin(rotation);
+        double cosr = cos(rotation);
         if (r)
         {
-            pix_rotated = pix.transformed(QTransform().rotate(rotation));
-            card_back_rotated = card_back.transformed(QTransform().rotate(rotation));
+            QTransform rotate(cosr, sinr, -sinr, cosr, 0, 0);
+            pix_rotated = pix.transformed(QTransform(rotate));
+            card_back_rotated = card_back.transformed(QTransform(rotate));
         }
         else
         {

@@ -15,15 +15,17 @@ ScalingLabel* TarotDeck::drawCard(QSize max_size)
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distrib(0, cards_remaining.count() - 1);
+    std::uniform_int_distribution<> card_draw(0, cards_remaining.count() - 1);
+    std::uniform_int_distribution<> rotation(-5, 5);
 
-    QString selected_card = cards_remaining[distrib(gen)];
+    QString selected_card = cards_remaining[card_draw(gen)];
     cards_used.append(selected_card);
 
     QPixmap pixmap;
     if (pixmap.load("://art/cards/" + selected_card))
     {
         card->setPixmap(pixmap);
+        card->rotatePixmap(rotation(gen));
         QObject::connect(card, &ScalingLabel::released, card, &ScalingLabel::onRelease);
     }
     card->setAlignment(Qt::AlignCenter);
