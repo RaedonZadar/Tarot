@@ -12,7 +12,7 @@ class CardTable : public QFrame
         CardTable(QFrame *parent = nullptr);
 
     public slots:
-        void applyConfig(QString config);
+        void applyConfig(QString config); // used to setup a specific configuration of cards
         void resizeEvent(QResizeEvent *);
 
     private:
@@ -22,11 +22,11 @@ class CardTable : public QFrame
         void fiveCardCross();
         void sevenCardCrescent();
         void celticCross();
-        void resetTable(QLayout *layout);
+        void resetTable(QLayout *layout); // clears all items, sublayouts and widgets in the table layout
         QSize getMaxCardSize();
-        ScalingLabel *three_cards[3] = {};
-        ScalingLabel *five_cards[5] = {};
-        ScalingLabel *seven_cards[7] = {};
-        ScalingLabel *ten_cards[10] = {};
+        ScalingLabel *three_cards[3] = {}; // initialise cards as null pointers
+        ScalingLabel *five_cards[5] = {}; // initialise cards as null pointers
+        ScalingLabel *seven_cards[7] = {}; // initialise cards as null pointers
+        ScalingLabel *ten_cards[10] = {}; // initialise cards as null pointers
 };
 #endif

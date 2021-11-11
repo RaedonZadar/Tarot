@@ -168,10 +168,10 @@ void CardTable::celticCross()
 
 void CardTable::resetTable(QLayout *layout)
 {
-    /* Private method function for resetting the base layout of card table. This    //
-    // function will delete all items, layouts and widgets in the base layout in    //
-    // order to reset it and will also clear all card pointers back to nullptr.     //
-    // It is called at the start of each configuration function.                    */
+    /* Private method function for resetting the base layout of card table. This //
+    // function will delete all items, layouts and widgets in the base layout in //
+    // order to reset it and will also clear all card pointers back to nullptr.  //
+    // It is called at the start of each configuration function.                 */
 
     if (layout->count() > 0)
     {
@@ -193,6 +193,8 @@ void CardTable::resetTable(QLayout *layout)
 
 void CardTable::resizeEvent(QResizeEvent *e)
 {
+    /* Provide each card object with their maximum allowed size each time the window is resized */
+
     QSize size = getMaxCardSize();
     
     for (int i = 0; i < 10; ++i)
@@ -218,6 +220,9 @@ void CardTable::resizeEvent(QResizeEvent *e)
 
 QSize CardTable::getMaxCardSize()
 {
+    /* Calculates the maximum allowed size of drawn cards to maintain constant //
+    // card sizes across all configurations and prevent scaling issues         */
+
     QSize size = this->size();
     size.rwidth() = size.width() / 7.5;
     size.rheight() = size.height() / 5;
